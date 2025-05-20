@@ -38,7 +38,7 @@
   </style>
 </head>
 <body>
-  <h2>Advanced Calculator</h2>
+  <h2>Attendance Calculator</h2>
 
   <label for="input1"># of Meetings Attended</label>
   <input type="number" id="input1" placeholder="Enter a number" />
@@ -71,13 +71,14 @@
       let result2 = "Undefined (division by zero)";
 
       if (calc1Denominator !== 0) {
-        result1 = ((input1 + input2) / calc1Denominator).toFixed(2);
+        const calc1 = ((input1 + input2) / calc1Denominator) * 100;
+        result1 = `${calc1.toFixed(2)}%`;
       }
 
       if (calc2Denominator !== 0) {
-        result2 = ((input1 + input2 + input4) / calc2Denominator).toFixed(2);
+        const calc2 = ((input1 + input2 + input4) / calc2Denominator) * 100;
+        result2 = `${calc2.toFixed(2)}%`;
       }
-
       document.getElementById("calc1").textContent = `Calculation 1: ${result1}`;
       document.getElementById("calc2").textContent = `Calculation 2: ${result2}`;
     }
