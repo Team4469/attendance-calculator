@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sum Calculator</title>
+  <title>Advanced Sum Calculator</title>
   <style>
     body {
       font-family: sans-serif;
@@ -38,28 +38,48 @@
   </style>
 </head>
 <body>
-  <h2>Sum Calculator</h2>
+  <h2>Advanced Calculator</h2>
 
-  <label for="input1">Input 1</label>
+  <label for="input1"># of Meetings Attended</label>
   <input type="number" id="input1" placeholder="Enter a number" />
 
-  <label for="input2">Input 2</label>
+  <label for="input2"># of Additional Credit Days</label>
   <input type="number" id="input2" placeholder="Enter a number" />
 
-  <label for="input3">Input 3</label>
+  <label for="input3"># of Available Meetings</label>
   <input type="number" id="input3" placeholder="Enter a number" />
 
-  <label for="input4">Input 4</label>
+  <label for="input4"># of Approved Absences</label>
   <input type="number" id="input4" placeholder="Enter a number" />
 
-  <button onclick="calculateSum()">Calculate Sum</button>
-  <div class="result" id="result">Result: </div>
+  <button onclick="performCalculations()">Calculate</button>
+
+  <div class="result" id="calc1">Calculation 1: </div>
+  <div class="result" id="calc2">Calculation 2: </div>
 
   <script>
-    function calculateSum() {
-      const values = [1, 2, 3, 4].map(i => parseFloat(document.getElementById(`input${i}`).value) || 0);
-      const sum = values.reduce((acc, val) => acc + val, 0);
-      document.getElementById('result').textContent = `Result: ${sum}`;
+    function performCalculations() {
+      const input1 = parseFloat(document.getElementById("input1").value) || 0;
+      const input2 = parseFloat(document.getElementById("input2").value) || 0;
+      const input3 = parseFloat(document.getElementById("input3").value) || 0;
+      const input4 = parseFloat(document.getElementById("input4").value) || 0;
+
+      const calc1Denominator = input3 - input4;
+      const calc2Denominator = input3;
+
+      let result1 = "Undefined (division by zero)";
+      let result2 = "Undefined (division by zero)";
+
+      if (calc1Denominator !== 0) {
+        result1 = ((input1 + input2) / calc1Denominator).toFixed(2);
+      }
+
+      if (calc2Denominator !== 0) {
+        result2 = ((input1 + input2 + input4) / calc2Denominator).toFixed(2);
+      }
+
+      document.getElementById("calc1").textContent = `Calculation 1: ${result1}`;
+      document.getElementById("calc2").textContent = `Calculation 2: ${result2}`;
     }
   </script>
 </body>
